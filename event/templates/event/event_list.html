@@ -1,0 +1,14 @@
+
+{% if event_list %}
+<h1>All Events</h1>
+
+<ul>
+    {% for event in event_list %}
+        <li>{{event}}</li>
+    {% endfor %}
+</ul>
+    
+{% else %}
+    <p>There are no events</p>
+
+{% endif %}
