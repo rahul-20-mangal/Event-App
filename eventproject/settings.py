@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'event.apps.EventConfig',
     'spot.apps.SpotConfig',
     'django.contrib.gis',
+    'taggit',
 
 ]
 
