@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load widget_tweaks %}
+<div class="conatiner" style="text-align: center;">
+    <h1>Create Event: </h1>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <table style="margin: auto;">
+            <tr>
+                <th>Title: </th>
+                <td>{{event_form.title}}</td>
+            </tr>
+            <tr>
+                <th>Place: </th>
+                <td>{{event_form.place}}</td>
+            </tr>
+            <tr>
+                <th>Date: </th>
+                <td>{{timing_form.event_date}}</td>
+            </tr>
+            <tr>
+                <th>Time: </th>
+                <td>{{timing_form.event_time}}</td>
+            </tr>
+            
+            
+            <!-- <tr>
+                <th>Tags: </th>
+                <td>{{form.tags}}</td>
+            </tr> -->
+        </table>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+</div>
+
+{% endblock %}
