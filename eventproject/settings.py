@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     'taggit',
     'widget_tweaks',
+    'leaflet',
 
 ]
 
