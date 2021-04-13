@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from event.models import Event, Timing
 from django.views import generic
 from event.forms import EventForm, TimingForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 def index(request):
@@ -13,7 +17,7 @@ class EventListView(generic.ListView):
 class EventDetailView(generic.DetailView):
     model = Event
 
-
+@login_required
 def create_event(request):
     if request.method == 'POST':
         event_form = EventForm(request.POST)
@@ -46,3 +50,18 @@ def create_event(request):
 #         form = EventForm()
     
 #     return render(request, 'event/create_event.html', {'form':form})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('event:index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'event/signup.html', {'form': form})

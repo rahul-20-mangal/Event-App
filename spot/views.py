@@ -3,6 +3,7 @@ from django.views import generic
 from spot.models import Place
 from spot.forms import PlaceForm
 from django.contrib.gis.db.models import PointField
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -23,6 +24,7 @@ def cityplaces(request, inputcity):
     city = Place.objects.filter(city=inputcity)
     return render(request, 'spot/city_places.html', context={'cities':city})
 
+@login_required
 def add_place(request):
     if request.method == 'POST':
         form = PlaceForm(request.POST)
