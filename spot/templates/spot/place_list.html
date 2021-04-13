@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-9 text-center">
+    <h1 id="indextext" class="font-weight-bold">Places</h1>
+  </div>
+</div>
+
+<hr>
+<div class="container-fluid" style="align-content: center;">
+  <div class="row justify-content-center">
+    {% if place_list %}
+
+    {% for place in place_list %}
+    <div class="col-lg-4 col-md-6">
+
+
+      <a href="{{ place.get_absolute_url }}"><img src="https://source.unsplash.com/1600x900/?temple,university,park,nature" class="img-fluid mb-2"></a>
+
+      <a href="{{ place.get_absolute_url }}">{{ place.title }}</a> - {{place.type_of_place}}
+
+      <p>{{place.description|truncatechars:100}}</p>
+      <p>City: {{place.city}}</p>
+      <br>
+
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>There are no Places.</p>
+    {% endif %}
+  </div>
+</div>
+
+
+{% endblock %}

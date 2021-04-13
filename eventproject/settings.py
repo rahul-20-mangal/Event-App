@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'event.apps.AppConfig',
+    'event.apps.EventConfig',
+    'spot.apps.SpotConfig',
+    'django.contrib.gis',
+
 ]
 
 MIDDLEWARE = [
@@ -74,10 +77,21 @@ WSGI_APPLICATION = 'eventproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'event_app_db',
+        'USER': 'priyansh2610',
+        'PASSWORD': 'mangal2008',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -106,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
