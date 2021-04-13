@@ -29,7 +29,7 @@ def add_place(request):
         if form.is_valid():
             place = form.save(commit=False)
             place.save()
-            return redirect('spot:list-place')
+            return redirect('event:index')
     else:
         form = PlaceForm()
     

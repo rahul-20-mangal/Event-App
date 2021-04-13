@@ -1,17 +1,26 @@
+{% extends "base.html" %}
 
-<h1>Event Details</h1>
-<p>Event Title: {{ event.title }}</p>
-<p>Event Place: {{ event.place }}</p>
-<h4>Event Timings</h4>
-<ol>
+{% block content %}
 
-{% for event_timing in event.timing_set.all %}
-    <li>
-        Event Date: {{ event_timing.event_date }} <b>and</b> Event Time: {{ event_timing.event_time }}
-    </li>
-    <br>
-{% endfor %}
-</ol>
-<p>Event Created By: {{ event.user }}</p>
-<p>Event Created on: {{ event.created}}</p>
-<p>Event Modified on: {{ event.modified}}</p>
+<div class="container">
+
+    <h1>Event Details</h1>
+    <p>Event Title: {{ event.title }}</p>
+    <p>Event Place: {{ event.place }}</p>
+    <h4>Event Timings</h4>
+    <ol>
+
+        {% for event_timing in event.timing_set.all %}
+        <li>
+            Event Date: {{ event_timing.event_date }} <b>and</b> Event Time: {{ event_timing.event_time }}
+        </li>
+        <br>
+        {% endfor %}
+    </ol>
+    <p>Event Created By: {{ event.user }}</p>
+    <p>Event Created on: {{ event.created}}</p>
+    <p>Event Modified on: {{ event.modified}}</p>
+
+</div>
+
+{% endblock %}
