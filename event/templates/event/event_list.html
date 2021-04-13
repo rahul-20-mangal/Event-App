@@ -4,7 +4,8 @@
 
 <ul>
     {% for event in event_list %}
-        <li>{{event}}</li>
+        <li>{{event}} <a href="{% url 'event:event-detail' pk=event.pk %}">Detail about event</a></li> 
+        <br>
     {% endfor %}
 </ul>
     
