@@ -15,42 +15,12 @@
   <form method="post">
     {% csrf_token %}
     <table style="margin: auto;">
-      <tr>
-        <th>Title: </th>
-        <td>{{form.title}}</td>
-      </tr>
-      <tr>
-        <th>Location: </th>
-        <td>{{form.location}}</td>
-      </tr>
-      <tr>
-        <th>Description: </th>
-        <td>{{form.description}}</td>
-      </tr>
-      <tr>
-        <th>Address: </th>
-        <td>{{form.address}}</td>
-      </tr>
-      <tr>
-        <th>Phone: </th>
-        <td>{{form.phone}}</td>
-      </tr>
-      <tr>
-        <th>City: </th>
-        <td>{{form.city}}</td>
-      </tr>
-      <tr>
-        <th>Type of Place</th>
-        <td>{{form.type_of_place}}</td>
-      </tr>
-      <tr>
-        <th>Tags</th>
-        <td>{{form.tags}}</td>
-      </tr>
+      {{form}}
     </table>
     <br>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  <br>
 </div>
 
 {% endblock %}
