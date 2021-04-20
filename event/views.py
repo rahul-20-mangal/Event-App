@@ -6,6 +6,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.forms import formset_factory
+from .filters import TimingFilter
 
 # Create your views here.
 
@@ -17,6 +18,14 @@ class EventListView(generic.ListView):
 
 class EventDetailView(generic.DetailView):
     model = Event
+
+class TimingListView(generic.ListView):
+    model = Timing
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = TimingFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 
 @login_required

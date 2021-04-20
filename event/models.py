@@ -19,3 +19,5 @@ class Timing(models.Model):
     event_time = models.TimeField(null=True, blank=True)
     event = models.ForeignKey('Event',on_delete=models.SET_NULL, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.event} - {self.event_date} - {self.event_time}'

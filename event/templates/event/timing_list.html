@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="text-align: center;">
+<h2>Filter Based on Date</h2>
+<form method="GET">
+    <table style="margin: auto;">
+    {{ filter.form }}
+    </table>
+    <br>
+    <button type="submit" class="btn btn-primary">Search</button>
+
+</form>
+<br>
+
+<h2>Events</h2>
+    <table class="table table-dark table-hover table-striped">
+        <tr>
+            <th>Event Title</th>
+            <th>Event Date</th>
+            <th>Event Time</th>
+        </tr>
+        {% for timing in filter.qs %}
+        <tr>
+            <td>{{timing.event}}</td>
+            <td>{{timing.event_date}}</td>
+            <td>{{timing.event_time}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

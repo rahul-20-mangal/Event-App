@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'taggit',
     'widget_tweaks',
     'leaflet',
-
+    'django_filters',
 ]
 
 MIDDLEWARE = [
