@@ -5,6 +5,7 @@ from event.forms import EventForm, TimingForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.forms import formset_factory
 
 # Create your views here.
 
@@ -17,39 +18,25 @@ class EventListView(generic.ListView):
 class EventDetailView(generic.DetailView):
     model = Event
 
+
 @login_required
 def create_event(request):
-    if request.method == 'POST':
-        event_form = EventForm(request.POST)
-        timing_form = TimingForm(request.POST)
-
-        if event_form.is_valid() and timing_form.is_valid():
-            x = event_form.save(commit=False)
-            y = timing_form.save(commit=False)
-            
-            y.save()
-            return redirect('event:all-events')
-    else:
-        event_form = EventForm()
-        timing_form = TimingForm()
+    event_form = EventForm(request.POST or None)
     
-    return render(request, 'event/create_event.html', {'event_form':event_form,'timing_form':timing_form})
+    TimingFormSet = formset_factory(TimingForm, extra=2)
+    timing_formset = TimingFormSet(request.POST or None)
 
-# def create_event(request):
-#     if request.method == 'POST':
-#         form = EventForm(request.POST)
+    if event_form.is_valid() and timing_formset.is_valid():
+        event = event_form.save()
+        event.user = request.user
 
-#         if form.is_valid():
-#             event = form.save(commit=False)
-#             event.event_date = form.event_date
-#             event.event_time = form.event_time
-#             event.save()
-
-#             return redirect('event:all-events')
-#     else:
-#         form = EventForm()
+        for timing_form in timing_formset:
+            timing = timing_form.save(commit=False)
+            timing.event = event
+            timing.save()
+        return redirect('event:all-events')
     
-#     return render(request, 'event/create_event.html', {'form':form})
+    return render(request, 'event/create_event.html', {'event_form':event_form,'formset':timing_formset})
 
 
 def signup(request):
