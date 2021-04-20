@@ -12,8 +12,6 @@
             <th>Title</th>
             <th>Place</th>
             <th>Details</th>
-            <th>Update</th>
-            <th>Remove</th>
         </tr>
 
         {% for event in event_list %}
@@ -21,8 +19,7 @@
             <td>{{event.title}}</td>
             <td>{{event.place}}</td>
             <td><a href="{% url 'event:event-detail' pk=event.pk %}"><button type="button" class="btn btn-primary">Detail</button></a></td>
-            <td><a href=""><button type="button" class="btn btn-warning">Update</button></a></td>
-            <td><a href=""><button type="button" class="btn btn-danger">Delete</button></a></td>
+            
         </tr>
 
         {% endfor %}
