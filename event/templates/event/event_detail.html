@@ -7,6 +7,18 @@
     <h1>Event Details</h1>
     <p>Event Title: {{ event.title }}</p>
     <p>Event Place: {{ event.place }}</p>
+
+    <h4>Event Tags</h4>
+    {% if event.tags.count == 0 %}
+        <p>There ara no tags</p>
+    {% else %}
+        <ul>
+        {% for tag in event.tags.all %}
+            <li>{{ tag }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
     <h4>Event Timings</h4>
     <ol>
 

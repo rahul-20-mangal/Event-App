@@ -5,7 +5,7 @@ class EventForm(forms.ModelForm):
     
     class Meta:
         model = Event
-        fields = ('title','place')
+        fields = ('title','place','tags')
 
 class TimingForm(forms.ModelForm):
     
