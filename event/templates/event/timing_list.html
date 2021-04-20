@@ -19,12 +19,14 @@
             <th>Event Title</th>
             <th>Event Date</th>
             <th>Event Time</th>
+            <th>Event Detail</th>
         </tr>
         {% for timing in filter.qs %}
         <tr>
             <td>{{timing.event}}</td>
             <td>{{timing.event_date}}</td>
             <td>{{timing.event_time}}</td>
+            <td><a href="{% url 'event:event-detail' pk=timing.event.pk %}"><button type="button" class="btn btn-primary">Detail</button></a></td>
         </tr>
         {% endfor %}
     </table>
