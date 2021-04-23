@@ -38,6 +38,7 @@ def create_event(request):
     if event_form.is_valid() and timing_formset.is_valid():
         event = event_form.save()
         event.user = request.user
+        event.save()
 
         for timing_form in timing_formset:
             timing = timing_form.save(commit=False)
